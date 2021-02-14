@@ -1,0 +1,14 @@
+const query = "?limit=10&offset=10&price=10000&size=big&place=seoul"
+
+const stringToQuery = (query) => {
+  const [_, params] = query.split("?") // 물음표 분리
+  return params.split("&").reduce((acc, cur) => { // 프로퍼티 분리
+    const [k, v] = cur.split("=") // key, value 분리
+    return {...acc, [k]: v}
+  }, {})
+}
+
+const queryObj = stringToQuery(query);
+
+queryObj.price // "10000"
+queryObj.limit //"10"
